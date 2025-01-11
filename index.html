@@ -32,6 +32,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      position: relative;
     }
 
     .equipment-item img {
@@ -40,6 +41,18 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       background-color: #fff;
+    }
+
+    .popup {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      display: none;
+      z-index: 10;
+      pointer-events: none;
+      white-space: nowrap;
     }
 
     .character-container {
@@ -77,42 +90,36 @@
       width: 100px;
       height: 120px;
     }
-
-    .popup {
-      position: absolute;
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 5px 10px;
-      border-radius: 5px;
-      display: none;
-      z-index: 10;
-      pointer-events: none;
-    }
   </style>
 </head>
 <body>
   <div class="equipment-page">
     <!-- Left Equipment List -->
     <div class="equipment-list">
-      <div class="equipment-item">
+      <div class="equipment-item" data-info="Helmet: Increases defense.">
         <img src="icon-head.png" alt="Head Icon">
         <span>Head</span>
+        <div class="popup">Helmet: Increases defense.</div>
       </div>
-      <div class="equipment-item">
+      <div class="equipment-item" data-info="Bottom: Provides support.">
         <img src="icon-bottom.png" alt="Bottom Icon">
         <span>Bottom</span>
+        <div class="popup">Bottom: Provides support.</div>
       </div>
-      <div class="equipment-item">
+      <div class="equipment-item" data-info="Right Hand: Weapon slot.">
         <img src="icon-right-hand.png" alt="Right Hand Icon">
         <span>Right Hand</span>
+        <div class="popup">Right Hand: Weapon slot.</div>
       </div>
-      <div class="equipment-item">
+      <div class="equipment-item" data-info="Cape: Adds evasion.">
         <img src="icon-cape.png" alt="Cape Icon">
         <span>Cape</span>
+        <div class="popup">Cape: Adds evasion.</div>
       </div>
-      <div class="equipment-item">
+      <div class="equipment-item" data-info="Accessory 1: Boosts stats.">
         <img src="icon-accessory1.png" alt="Accessory 1 Icon">
         <span>Accessory 1</span>
+        <div class="popup">Accessory 1: Boosts stats.</div>
       </div>
     </div>
 
@@ -122,51 +129,49 @@
 
       <div class="equipment-area head" data-info="Helmet: Increases defense."></div>
       <div class="equipment-area body" data-info="Armor: Boosts resistance."></div>
-
-      <div class="popup" id="popup"></div>
     </div>
 
     <!-- Right Equipment List -->
     <div class="equipment-list">
-      <div class="equipment-item">
+      <div class="equipment-item" data-info="Middle: Adds accuracy.">
         <img src="icon-middle.png" alt="Middle Icon">
         <span>Middle</span>
+        <div class="popup">Middle: Adds accuracy.</div>
       </div>
-      <div class="equipment-item">
+      <div class="equipment-item" data-info="Clothing: Adds defense.">
         <img src="icon-clothing.png" alt="Clothing Icon">
         <span>Clothing</span>
+        <div class="popup">Clothing: Adds defense.</div>
       </div>
-      <div class="equipment-item">
+      <div class="equipment-item" data-info="Left Hand: Shield slot.">
         <img src="icon-left-hand.png" alt="Left Hand Icon">
         <span>Left Hand</span>
+        <div class="popup">Left Hand: Shield slot.</div>
       </div>
-      <div class="equipment-item">
+      <div class="equipment-item" data-info="Shoes: Increases speed.">
         <img src="icon-shoes.png" alt="Shoes Icon">
         <span>Shoes</span>
+        <div class="popup">Shoes: Increases speed.</div>
       </div>
-      <div class="equipment-item">
+      <div class="equipment-item" data-info="Accessory 2: Adds bonuses.">
         <img src="icon-accessory2.png" alt="Accessory 2 Icon">
         <span>Accessory 2</span>
+        <div class="popup">Accessory 2: Adds bonuses.</div>
       </div>
     </div>
   </div>
 
   <script>
-    const popup = document.getElementById('popup');
-    const equipmentAreas = document.querySelectorAll('.equipment-area');
+    const equipmentItems = document.querySelectorAll('.equipment-item');
 
-    equipmentAreas.forEach(area => {
-      area.addEventListener('mouseenter', (e) => {
-        popup.textContent = e.target.getAttribute('data-info');
+    equipmentItems.forEach(item => {
+      const popup = item.querySelector('.popup');
+
+      item.addEventListener('mouseenter', () => {
         popup.style.display = 'block';
       });
 
-      area.addEventListener('mousemove', (e) => {
-        popup.style.left = e.pageX + 10 + 'px';
-        popup.style.top = e.pageY + 10 + 'px';
-      });
-
-      area.addEventListener('mouseleave', () => {
+      item.addEventListener('mouseleave', () => {
         popup.style.display = 'none';
       });
     });
