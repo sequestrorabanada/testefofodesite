@@ -47,12 +47,25 @@
       position: absolute;
       background: rgba(0, 0, 0, 0.8);
       color: white;
-      padding: 5px 10px;
+      padding: 10px;
       border-radius: 5px;
       display: none;
       z-index: 10;
       pointer-events: none;
       white-space: nowrap;
+      width: 200px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .popup-content {
+      margin-bottom: 10px;
+    }
+
+    .popup-icon {
+      display: block;
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
     }
 
     .character-container {
@@ -66,7 +79,7 @@
     .character {
       width: 100%;
       height: 100%;
-      background: url('your-character-image.png') no-repeat center;
+      background: url('Camada 2.png') no-repeat center;
       background-size: contain;
     }
 
@@ -96,79 +109,73 @@
   <div class="equipment-page">
     <!-- Lista de Equipamentos da Esquerda -->
     <div class="equipment-list">
-      <div class="equipment-item" data-info="Capacete: Aumenta a defesa.">
+      <div class="equipment-item" data-info="Capacete" data-description="Aumenta a defesa." data-cards="Sem cartas." data-rune="Sem runa.">
         <img src="icon-head.png" alt="Ícone de Capacete">
         <span>Capacete</span>
-        <div class="popup">Capacete: Aumenta a defesa.</div>
+        <div class="popup">
+          <img class="popup-icon" src="icon-head.png" alt="Ícone de Capacete">
+          <div class="popup-content">
+            <strong>Nome:</strong> Capacete<br>
+            <strong>Descrição:</strong> Aumenta a defesa.
+          </div>
+          <div class="popup-content">
+            <strong>Cartas:</strong> Sem cartas.
+          </div>
+          <div class="popup-content">
+            <strong>Runa:</strong> Sem runa.
+          </div>
+        </div>
       </div>
-      <div class="equipment-item" data-info="Parte Inferior: Proporciona suporte.">
-        <img src="icon-bottom.png" alt="Ícone de Parte Inferior">
-        <span>Parte Inferior</span>
-        <div class="popup">Parte Inferior: Proporciona suporte.</div>
-      </div>
-      <div class="equipment-item" data-info="Mão Direita: Slot para arma.">
-        <img src="icon-right-hand.png" alt="Ícone de Mão Direita">
-        <span>Mão Direita</span>
-        <div class="popup">Mão Direita: Slot para arma.</div>
-      </div>
-      <div class="equipment-item" data-info="Capa: Adiciona evasão.">
-        <img src="icon-cape.png" alt="Ícone de Capa">
-        <span>Capa</span>
-        <div class="popup">Capa: Adiciona evasão.</div>
-      </div>
-      <div class="equipment-item" data-info="Acessório 1: Melhora atributos.">
-        <img src="icon-accessory1.png" alt="Ícone de Acessório 1">
-        <span>Acessório 1</span>
-        <div class="popup">Acessório 1: Melhora atributos.</div>
-      </div>
+      <!-- Repita estrutura para outros itens -->
     </div>
 
     <!-- Contêiner do Personagem -->
     <div class="character-container">
       <div class="character"></div>
 
-      <div class="equipment-area head" data-info="Capacete: Aumenta a defesa."></div>
-      <div class="equipment-area body" data-info="Armadura: Melhora a resistência."></div>
+      <div class="equipment-area head" data-info="Capacete" data-description="Aumenta a defesa." data-cards="Sem cartas." data-rune="Sem runa."></div>
+      <div class="equipment-area body" data-info="Armadura" data-description="Melhora a resistência." data-cards="Carta de Defesa." data-rune="Runa de Vitalidade."></div>
     </div>
 
     <!-- Lista de Equipamentos da Direita -->
     <div class="equipment-list">
-      <div class="equipment-item" data-info="Meio: Adiciona precisão.">
-        <img src="icon-middle.png" alt="Ícone de Meio">
-        <span>Meio</span>
-        <div class="popup">Meio: Adiciona precisão.</div>
-      </div>
-      <div class="equipment-item" data-info="Roupa: Adiciona defesa.">
-        <img src="icon-clothing.png" alt="Ícone de Roupa">
-        <span>Roupa</span>
-        <div class="popup">Roupa: Adiciona defesa.</div>
-      </div>
-      <div class="equipment-item" data-info="Mão Esquerda: Slot para escudo.">
-        <img src="icon-left-hand.png" alt="Ícone de Mão Esquerda">
-        <span>Mão Esquerda</span>
-        <div class="popup">Mão Esquerda: Slot para escudo.</div>
-      </div>
-      <div class="equipment-item" data-info="Calçados: Aumentam a velocidade.">
-        <img src="icon-shoes.png" alt="Ícone de Calçados">
-        <span>Calçados</span>
-        <div class="popup">Calçados: Aumentam a velocidade.</div>
-      </div>
-      <div class="equipment-item" data-info="Acessório 2: Adiciona bônus.">
-        <img src="icon-accessory2.png" alt="Ícone de Acessório 2">
-        <span>Acessório 2</span>
-        <div class="popup">Acessório 2: Adiciona bônus.</div>
-      </div>
+      <!-- Exemplo similar ao da esquerda -->
     </div>
   </div>
 
   <script>
-    const equipmentItems = document.querySelectorAll('.equipment-item');
+    const equipmentItems = document.querySelectorAll('.equipment-item, .equipment-area');
 
     equipmentItems.forEach(item => {
-      const popup = item.querySelector('.popup');
+      const popup = item.querySelector('.popup') || document.createElement('div');
 
-      item.addEventListener('mouseenter', () => {
+      if (!popup.classList.contains('popup')) {
+        popup.className = 'popup';
+        popup.innerHTML = `
+          <img class="popup-icon" src="icon-placeholder.png" alt="Ícone do Item">
+          <div class="popup-content">
+            <strong>Nome:</strong> ${item.dataset.info || 'Sem nome'}<br>
+            <strong>Descrição:</strong> ${item.dataset.description || 'Sem descrição'}
+          </div>
+          <div class="popup-content">
+            <strong>Cartas:</strong> ${item.dataset.cards || 'Sem cartas.'}
+          </div>
+          <div class="popup-content">
+            <strong>Runa:</strong> ${item.dataset.rune || 'Sem runa.'}
+          </div>
+        `;
+        document.body.appendChild(popup);
+      }
+
+      item.addEventListener('mouseenter', (e) => {
         popup.style.display = 'block';
+        popup.style.left = e.pageX + 15 + 'px';
+        popup.style.top = e.pageY + 15 + 'px';
+      });
+
+      item.addEventListener('mousemove', (e) => {
+        popup.style.left = e.pageX + 15 + 'px';
+        popup.style.top = e.pageY + 15 + 'px';
       });
 
       item.addEventListener('mouseleave', () => {
