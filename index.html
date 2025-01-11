@@ -13,6 +13,33 @@
       align-items: center;
       height: 100vh;
       background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    .equipment-page {
+      display: flex;
+      gap: 20px;
+    }
+
+    .equipment-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .equipment-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .equipment-item img {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
     }
 
     .character-container {
@@ -64,13 +91,64 @@
   </style>
 </head>
 <body>
-  <div class="character-container">
-    <div class="character"></div>
+  <div class="equipment-page">
+    <!-- Left Equipment List -->
+    <div class="equipment-list">
+      <div class="equipment-item">
+        <img src="icon-head.png" alt="Head Icon">
+        <span>Head</span>
+      </div>
+      <div class="equipment-item">
+        <img src="icon-bottom.png" alt="Bottom Icon">
+        <span>Bottom</span>
+      </div>
+      <div class="equipment-item">
+        <img src="icon-right-hand.png" alt="Right Hand Icon">
+        <span>Right Hand</span>
+      </div>
+      <div class="equipment-item">
+        <img src="icon-cape.png" alt="Cape Icon">
+        <span>Cape</span>
+      </div>
+      <div class="equipment-item">
+        <img src="icon-accessory1.png" alt="Accessory 1 Icon">
+        <span>Accessory 1</span>
+      </div>
+    </div>
 
-    <div class="equipment-area head" data-info="Helmet: Increases defense."></div>
-    <div class="equipment-area body" data-info="Armor: Boosts resistance."></div>
+    <!-- Character Container -->
+    <div class="character-container">
+      <div class="character"></div>
 
-    <div class="popup" id="popup"></div>
+      <div class="equipment-area head" data-info="Helmet: Increases defense."></div>
+      <div class="equipment-area body" data-info="Armor: Boosts resistance."></div>
+
+      <div class="popup" id="popup"></div>
+    </div>
+
+    <!-- Right Equipment List -->
+    <div class="equipment-list">
+      <div class="equipment-item">
+        <img src="icon-middle.png" alt="Middle Icon">
+        <span>Middle</span>
+      </div>
+      <div class="equipment-item">
+        <img src="icon-clothing.png" alt="Clothing Icon">
+        <span>Clothing</span>
+      </div>
+      <div class="equipment-item">
+        <img src="icon-left-hand.png" alt="Left Hand Icon">
+        <span>Left Hand</span>
+      </div>
+      <div class="equipment-item">
+        <img src="icon-shoes.png" alt="Shoes Icon">
+        <span>Shoes</span>
+      </div>
+      <div class="equipment-item">
+        <img src="icon-accessory2.png" alt="Accessory 2 Icon">
+        <span>Accessory 2</span>
+      </div>
+    </div>
   </div>
 
   <script>
