@@ -79,7 +79,7 @@
     .character {
       width: 100%;
       height: 100%;
-      background: url('Camada 2.png') no-repeat center;
+      background: url('https://i.imgur.com/iuPIKOC.png') no-repeat center;
       background-size: contain;
     }
 
@@ -110,10 +110,10 @@
     <!-- Lista de Equipamentos da Esquerda -->
     <div class="equipment-list">
       <div class="equipment-item" data-info="Capacete" data-description="Aumenta a defesa." data-cards="Sem cartas." data-rune="Sem runa.">
-        <img src="icon-head.png" alt="Ícone de Capacete">
+        <img src="https://api.ragnatales.com.br/database/item/icon?nameid=535" alt="Ícone de Capacete">
         <span>Capacete</span>
         <div class="popup">
-          <img class="popup-icon" src="icon-head.png" alt="Ícone de Capacete">
+          <img class="popup-icon" src="https://api.ragnatales.com.br/database/item/icon?nameid=535" alt="Ícone de Capacete">
           <div class="popup-content">
             <strong>Nome:</strong> Capacete<br>
             <strong>Descrição:</strong> Aumenta a defesa.
@@ -152,7 +152,7 @@
       if (!popup.classList.contains('popup')) {
         popup.className = 'popup';
         popup.innerHTML = `
-          <img class="popup-icon" src="icon-placeholder.png" alt="Ícone do Item">
+          <img class="popup-icon" src="https://api.ragnatales.com.br/database/item/icon?nameid=535" alt="Ícone do Item">
           <div class="popup-content">
             <strong>Nome:</strong> ${item.dataset.info || 'Sem nome'}<br>
             <strong>Descrição:</strong> ${item.dataset.description || 'Sem descrição'}
